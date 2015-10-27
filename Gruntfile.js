@@ -4,22 +4,30 @@ module.exports = function(grunt) {
     
     uglify: {
       build: {
-        src: 'assets/javascript/home.js',
-        dest: 'assets/javascript/home.min.js'
+        src: 'assets/javascript/src/home.js',
+        dest: 'assets/javascript/src/home.min.js'
+      }
+    },
+    
+    concat: {
+      js: {
+        src: ['assets/javascript/src/home.min.js', 'assets/javascript/libs/jquery.scrollTo.min.js'],
+        dest: 'assets/javascript/prod.min.js'
       }
     },
     
     watch: {
-      scripts: {
-        files: ['assets/javascript/home.js'],
-        tasks: ['uglify']
+      js: {
+        files: ['assets/javascript/src/home.js'],
+        tasks: ['uglify', 'concat']
       }
     }
   });
   
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify', 'concat']);
   
 };
