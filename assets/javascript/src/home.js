@@ -5,20 +5,26 @@ $(document).ready(function() {
     // remove clicked link
     $("#image-link").removeAttr("href");
     
-    // shrink photo and slide to left
-    $(".without-text").animate({
-      left: "25px",
-      top: "110px",
-      height: $(window).height() - 135
-    }, 1000);
-    
-    // fade out photo with text
-    $(".with-text").animate({
-      left: "25px",
-      top: "110px",
-      height: $(window).height() - 135,
-      opacity: 0
-    }, 1000);
+    if ($(window).height() < $(window).width()) {
+      // shrink photo and slide to left
+      $(".without-text").animate({
+        left: "25px",
+        top: "110px",
+        height: $(window).height() - 135
+      }, 1000);
+      
+      // fade out photo with text
+      $(".with-text").animate({
+        left: "25px",
+        top: "110px",
+        height: $(window).height() - 135,
+        opacity: 0
+      }, 1000);
+    } else {
+      $(".with-text").animate({
+        opacity: 0
+      }, 1000);
+    }
   
     // slide text up
     $("#overview div").delay(300).animate({
